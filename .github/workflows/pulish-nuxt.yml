@@ -25,19 +25,21 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.BWGHOST_SSHKEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "temp/"
-          REMOTE_HOST: "68.168.132.115"
-          REMOTE_USER: "root"
-          REMOTE_PORT: "27274"
+          REMOTE_HOST: ${{ secrets.BWGHOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          REMOTE_PORT: ${{ secrets.PORT }}
           TARGET: "/root/blog/web"
           
     # 部署到服务器
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: "68.168.132.115"
-        username: "root"
-        port: "27274"
+        host: ${{ secrets.BWGHOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
         key: ${{ secrets.BWGHOST_SSHKEY }}
         script: |
+          pm2 stop all
           cd /root/blog/web
-          yarn install --production
+          yarn install
+          pm2 restart all
