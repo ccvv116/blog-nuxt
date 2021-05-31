@@ -12,7 +12,7 @@
     <div class="short-article pt-1 text-sm text-gray-500" v-if="item.quote">
       {{ item.quote }}<nuxt-link class="ml-3 text-gray-900" :to="'/article?id='+ item.id" >⇨Read More</nuxt-link>
     </div>
-    <div class="text-right text-gray-500 text-sm pt-2">{{ $dayjs(item.create_at).format('YYYY-MM-DD') }}</div>
+    <div class="text-right text-gray-500 text-sm pt-2">{{ $dayjs(Number(item.create_at)).format('YYYY-MM-DD') }}</div>
   </div>
 </template>
 
