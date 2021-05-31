@@ -14,6 +14,7 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: '12.x'
+    - run: yarn install
     - run: yarn build
     - run: mkdir temp # 创建temp文件夹，用来装要传输到服务器的文件
     - run: cp -r .nuxt static nuxt.config.js package.json package-lock.json temp # 把要传输到服务器的文件复制到temp
@@ -21,22 +22,22 @@ jobs:
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.BWG_SSHKEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "temp/"
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USER_NAME }}
-          REMOTE_PORT: "27274"
+          REMOTE_HOST: ${{ secrets.BWGHOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          REMOTE_PORT: ${{ secrets.PORT }}
           TARGET: "/root/blog/web"
           
     # 部署到服务器
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER_NAME }}
-        port: "27274"
-        key: ${{ secrets.BWG_SSHKEY }}
+        host: ${{ secrets.BWGHOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSHKEY }}
         script: |
           cd /root/blog/web
           yarn install --production
