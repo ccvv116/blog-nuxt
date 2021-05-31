@@ -36,7 +36,7 @@ jobs:
       with:
         host: "68.168.132.115"
         username: "root"
-        port: ${{ secrets.PORT }}
+        port: "27274"
         key: ${{ secrets.SSHKEY }}
         script: |
           cd /root/blog/web
