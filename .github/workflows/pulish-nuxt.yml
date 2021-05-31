@@ -22,7 +22,7 @@ jobs:
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.BWGHOST_SSHKEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "temp/"
           REMOTE_HOST: "68.168.132.115"
