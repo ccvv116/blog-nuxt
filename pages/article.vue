@@ -2,7 +2,7 @@
   <div class="flex items-center flex-col pt-8 pb-32">
     <div class="max-w-screen-lg w-full">
       <h1 class="text-3xl py-3">{{article.title}}</h1>
-      <div class="text-sm text-gray-500 py-3">{{$dayjs(article.create_at).format('YYYY-MM-DD')}}</div>
+      <div class="text-sm text-gray-500 py-3">{{$dayjs(Number(article.create_at)).format('YYYY-MM-DD')}}</div>
       <div class="max-w-screen-lg w-full pt-3">
         <client-only>
           <mavon-editor
