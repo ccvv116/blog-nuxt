@@ -25,17 +25,17 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "temp/"
-          REMOTE_HOST: ${{ secrets.BWGHOST }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
-          REMOTE_PORT: ${{ secrets.PORT }}
+          REMOTE_HOST: "68.168.132.115"
+          REMOTE_USER: "root"
+          REMOTE_PORT: "27274"
           TARGET: "/root/blog/web"
           
     # 部署到服务器
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.BWGHOST }}
-        username: ${{ secrets.USERNAME }}
+        host: "68.168.132.115"
+        username: "root"
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
         script: |
