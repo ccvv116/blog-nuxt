@@ -37,7 +37,7 @@ jobs:
         host: "68.168.132.115"
         username: "root"
         port: "27274"
-        key: ${{ secrets.SSHKEY }}
+        key: ${{ secrets.BWGHOST_SSHKEY }}
         script: |
           cd /root/blog/web
           yarn install --production
