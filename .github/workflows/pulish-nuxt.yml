@@ -39,6 +39,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.BWGHOST_SSHKEY }}
         script: |
+          pm2 stop all
           cd /root/blog/web
           yarn install
-          pms restart nuxt-server
+          pm2 restart all
