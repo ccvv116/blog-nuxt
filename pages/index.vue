@@ -31,7 +31,7 @@ export default {
       const data = await getArticleList($axios, { page: query?.page || 1, size: 15 })
       const list = data.data.map(item => ({
         ...item,
-        quote: item.content.match(/(?<=\> ).*(?=\n\n)/)?.[0] || '',
+        quote: item.content.match(/(?<=\>\s?).*(?=\n\n)/)?.[0] || '',
       }))
       return {
         list,
