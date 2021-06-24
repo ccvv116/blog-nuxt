@@ -34,6 +34,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://google-analytics.nuxtjs.org
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -53,5 +55,10 @@ export default {
 
   proxy: {
     '/api/': 'http://0.0.0.0:3001',
+  },
+
+  // https://google-analytics.nuxtjs.org
+  googleAnalytics: {
+    id: 'G-MXTTD9KYVN', // Use as fallback if no runtime config is provided
   },
 }
