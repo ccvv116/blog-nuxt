@@ -9,12 +9,8 @@ import { checkLogin } from '~/api/login'
 export default {
   layout: 'admin',
   async asyncData({ $axios, redirect }) {
-    const data = await checkLogin($axios)
-    if (data?.data?.isLogined) {
-      // redirect(302, '/admin/article-create')
-    } else {
-      redirect(302, '/login')
-    }
+    const { data:{ isLogined } } = await checkLogin($axios)
+    if (!isLogined) redirect(302, '/login')
   },
 }
 </script>

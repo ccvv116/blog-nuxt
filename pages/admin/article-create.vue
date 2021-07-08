@@ -23,27 +23,28 @@ export default {
       mode: 'create',
     }
   },
+
   async asyncData({ $axios, query }) {
     if(query?.id) {
       try {
-        const data = await getById($axios, query.id)
-        if(data?.data) {
-          return {
-            mode: 'update',
-            title: data.data.title,
-            content: data.data.content,
-          }
+        const { data } = await getById($axios, query.id)
+        return {
+          mode: 'update',
+          title: data.title,
+          content: data.content,
         }
       } catch (error) {
         console.log(error)
       }
     }
   },
+
   methods: {
     submit() {
       if (this.mode === 'create') this.createArticle()
       if (this.mode === 'update') this.updateArticle()
     },
+    
     async createArticle() {
       const { title, content } = this
       try {
@@ -59,6 +60,7 @@ export default {
         console.log(error)
       }
     },
+
     async updateArticle() {
       const { title, content } = this
       try {

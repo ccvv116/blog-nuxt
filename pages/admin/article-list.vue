@@ -53,9 +53,10 @@ export default {
     edit(id) {
       this.$router.push(`article-create?id=${id}`)
     },
+
     async remove(id) {
       const data = await remove(this.$axios, id)
-      if(data && data.success) {
+      if(data?.success) {
         alert('删除成功')
         this.$nuxt.refresh()
       }
