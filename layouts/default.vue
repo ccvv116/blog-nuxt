@@ -1,7 +1,11 @@
 <template>
   <div>
     <header class="flex justify-center h-20 border-b">
-      <a class="max-w-screen-lg w-full flex items-center text-3xl text-gray-700" href="/">Czopo</a>
+      <a
+        class="max-w-screen-lg w-full flex items-center text-3xl text-gray-700"
+        href="/"
+        >Czopo</a
+      >
     </header>
     <div class="flex justify-center">
       <div class="max-w-screen-lg w-full">
@@ -13,15 +17,8 @@
 
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

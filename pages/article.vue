@@ -1,21 +1,24 @@
 <template>
   <div class="flex items-center flex-col pt-8 pb-32">
     <div class="max-w-screen-lg w-full">
-      <h1 class="text-3xl py-3">{{article.title}}</h1>
-      <div class="text-sm text-gray-500 py-3">{{$dayjs(Number(article.create_at)).format('YYYY-MM-DD')}}</div>
+      <h1 class="text-3xl py-3">{{ article.title }}</h1>
+      <div class="text-sm text-gray-500 py-3">
+        {{ $dayjs(Number(article.create_at)).format('YYYY-MM-DD') }}
+      </div>
       <div class="max-w-screen-lg w-full pt-3">
         <client-only>
           <mavon-editor
-          :toolbars="mdoption"
-          :editable="false"
-          :subfield="false"
-          :boxShadow="false"
-          codeStyle="github-gist"
-          defaultOpen="preview"
-          previewBackground="#ffffff"
-          :toolbarsFlag="false"
-          v-model="article.content"
-          :ishljs="true"/>
+            v-model="article.content"
+            :toolbars="mdoption"
+            :editable="false"
+            :subfield="false"
+            :box-shadow="false"
+            code-style="github-gist"
+            default-open="preview"
+            preview-background="#ffffff"
+            :toolbars-flag="false"
+            :ishljs="true"
+          />
         </client-only>
       </div>
     </div>
@@ -26,21 +29,11 @@
 import { getById } from '~/api/article'
 export default {
   async asyncData({ $axios, query }) {
-    if(query?.id) {
+    if (query?.id) {
       const data = await getById($axios, query.id)
       return {
-        article: data.data
+        article: data.data,
       }
-    }
-    
-  },
-  head() {
-    return {
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: this?.article?.title || 'Czopo blog 博客'}
-      ],
     }
   },
   data() {
@@ -50,6 +43,19 @@ export default {
         preview: false,
         subfield: false,
       },
+    }
+  },
+  head() {
+    return {
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this?.article?.title || 'Czopo blog 博客',
+        },
+      ],
     }
   },
 }

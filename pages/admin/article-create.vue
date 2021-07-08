@@ -1,31 +1,36 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="py-3 flex justify-center">
-      <input class="h-16 w-3/6 text-5xl border-b-2 text-center outline-none" type="text" v-model="title">
+      <input
+        v-model="title"
+        class="h-16 w-3/6 text-5xl border-b-2 text-center outline-none"
+        type="text"
+      />
     </div>
     <div class="flex-1">
-      <mavon-editor class="h-full" :toolbars="{}" v-model="content" :ishljs="true"/>
+      <mavon-editor
+        v-model="content"
+        class="h-full"
+        :toolbars="{}"
+        :ishljs="true"
+      />
     </div>
     <div class="flex justify-center items-center py-5">
-      <div class="d px-3 py-2 bg-blue-600 cursor-pointer text-white rounded-md" @click="submit">提交</div>
+      <div
+        class="d px-3 py-2 bg-blue-600 cursor-pointer text-white rounded-md"
+        @click="submit"
+      >
+        提交
+      </div>
     </div>
-    
   </div>
 </template>
 
 <script>
-import { create, update, getById } from '~/api/article';
+import { create, update, getById } from '~/api/article'
 export default {
-  data() {
-    return {
-      title: '',
-      content: '',
-      mode: 'create',
-    }
-  },
-
   async asyncData({ $axios, query }) {
-    if(query?.id) {
+    if (query?.id) {
       try {
         const { data } = await getById($axios, query.id)
         return {
@@ -38,20 +43,28 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      title: '',
+      content: '',
+      mode: 'create',
+    }
+  },
 
   methods: {
     submit() {
       if (this.mode === 'create') this.createArticle()
       if (this.mode === 'update') this.updateArticle()
     },
-    
+
     async createArticle() {
       const { title, content } = this
       try {
         const data = await create(this.$axios, {
-          title, content
-        });
-        if(data?.success) {
+          title,
+          content,
+        })
+        if (data?.success) {
           alert('提交成功')
           this.$router.push('article-list')
         }
@@ -65,9 +78,11 @@ export default {
       const { title, content } = this
       try {
         const data = await update(this.$axios, {
-          id: this.$route.query.id, title, content
-        });
-        if(data?.success) {
+          id: this.$route.query.id,
+          title,
+          content,
+        })
+        if (data?.success) {
           alert('修改成功')
           this.$router.push('article-list')
         }
@@ -75,12 +90,7 @@ export default {
         alert('修改失败')
         console.log(error)
       }
-    }
+    },
   },
-
 }
 </script>
-
-<style>
-
-</style>

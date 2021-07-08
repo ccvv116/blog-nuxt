@@ -1,6 +1,5 @@
 const BASE_URL = 'api/article'
 
-
 export const create = ($axios, params = {}) => {
   return $axios.post(`${BASE_URL}/create`, params)
 }
