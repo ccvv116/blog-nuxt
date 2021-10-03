@@ -34,7 +34,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.ORACLE_HOST }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           REMOTE_PORT: ${{ secrets.PORT }}
-          TARGET: "/root/blog/web"
+          TARGET: "/home/opc/blog/web"
           
     # 部署到服务器
     - name: Deploy
@@ -46,6 +46,6 @@ jobs:
         key: ${{ secrets.ORACLE_SSHKEY }}
         script: |
           pm2 stop all
-          cd /root/blog/web
+          cd /home/opc/blog/web
           yarn install
           pm2 restart all
