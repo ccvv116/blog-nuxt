@@ -28,10 +28,10 @@ jobs:
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.BWGHOST_SSHKEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ORACLE_SSHKEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "temp/"
-          REMOTE_HOST: ${{ secrets.BWGHOST }}
+          REMOTE_HOST: ${{ secrets.ORACLE_HOST }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           REMOTE_PORT: ${{ secrets.PORT }}
           TARGET: "/root/blog/web"
@@ -40,10 +40,10 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.BWGHOST }}
+        host: ${{ secrets.ORACLE_HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
-        key: ${{ secrets.BWGHOST_SSHKEY }}
+        key: ${{ secrets.ORACLE_SSHKEY }}
         script: |
           pm2 stop all
           cd /root/blog/web
