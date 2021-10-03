@@ -31,7 +31,7 @@
       "
       @click="submit"
     >
-      Login in
+      Login
     </div>
   </div>
 </template>
