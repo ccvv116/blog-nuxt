@@ -5,6 +5,12 @@ export default {
     htmlAttrs: {
       lang: 'en',
     },
+    script: [
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-LQEDXT16SC',
+        async: true,
+      },
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
