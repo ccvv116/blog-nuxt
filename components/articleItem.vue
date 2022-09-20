@@ -24,7 +24,7 @@
       >
     </div>
     <div class="text-right text-gray-500 text-sm pt-2">
-      {{ $dayjs(Number(item.create_at)).format('YYYY-MM-DD') }}
+      posted @{{ $dayjs(Number(item.create_at)).format('YYYY-MM-DD') }}
     </div>
   </div>
 </template>
