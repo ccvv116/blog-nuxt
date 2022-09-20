@@ -26,7 +26,7 @@
     <div class="flex-2 flex-col items-center pb-20">
       <div class="pt-5 pb-5">
         <ArticleItem v-for="item in list" :key="item.id" :item="item" />
-        <Pagination :total-page="totalPage" :value="page" />
+        <Pagination :total-page="totalPage" :value="+page" />
       </div>
     </div>
     <div class="flex-1">
